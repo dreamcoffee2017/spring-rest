@@ -22,6 +22,6 @@ public class GreetingController {
     @RequestMapping("/greeting")
     public String greeting(@RequestBody JSONObject jsonObject) {
         logger.info("Building a RESTful Web Service");
-        return "Hello World" + jsonObject.getString("id");
+        return "Hello World, " + jsonObject.getString("id");
     }
 }

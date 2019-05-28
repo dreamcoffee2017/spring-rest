@@ -34,7 +34,7 @@ public class RestTemplateUtil {
             headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
             HttpEntity<String> httpEntity = new HttpEntity<>("{\"id\":\"123\"}", headers);
             String result = restTemplate.postForObject("http://localhost:8080/web/greeting", httpEntity, String.class);
-            logger.info(result);
+            logger.info("Consuming a RESTful Web Service, {}", result);
         };
     }
 }
