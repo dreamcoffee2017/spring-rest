@@ -27,14 +27,15 @@ public class RestTemplateUtil {
         return builder.build();
     }
 
-    @Bean
+//    @Bean
     public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
         return args -> {
+            logger.info("Consuming a RESTful Web Service");
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
             HttpEntity<String> httpEntity = new HttpEntity<>("{\"id\":\"123\"}", headers);
             String result = restTemplate.postForObject("http://localhost:8080/web/greeting", httpEntity, String.class);
-            logger.info("Consuming a RESTful Web Service, {}", result);
+            logger.info(result);
         };
     }
 }
