@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.dreamcoffee.spring.boot.demo;
 
 import java.util.Timer;
 import java.util.TimerTask;

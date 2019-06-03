@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.dreamcoffee.spring.boot.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ public class RestTemplateUtil {
     }
 
 //    @Bean
-    public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
+    public CommandLineRunner run(RestTemplate restTemplate) {
         return args -> {
             logger.info("Consuming a RESTful Web Service");
             HttpHeaders headers = new HttpHeaders();

@@ -1,15 +1,10 @@
-package com.example.demo;
+package com.dreamcoffee.spring.boot.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * JdbcTemplateUtil
@@ -23,7 +18,7 @@ public class JdbcTemplateUtil {
     private static final Logger logger = LoggerFactory.getLogger(JdbcTemplateUtil.class);
 
 //    @Bean
-    public CommandLineRunner run(JdbcTemplate jdbcTemplate) throws Exception {
+    public CommandLineRunner run(JdbcTemplate jdbcTemplate) {
         return args -> {
             logger.info("Accessing Relational Data using JDBC with Spring");
 //            logger.info("Creating tables");
