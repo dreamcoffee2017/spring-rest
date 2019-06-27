@@ -1,4 +1,4 @@
-package com.dreamcoffee.spring.boot.demo;
+package com.dreamcoffee.spring.boot.demo.task;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ScheduledTasks {
 
-    private static final Logger logger = LoggerFactory.getLogger(ScheduledTasks.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ScheduledTasks.class);
 
     @Scheduled(fixedRate = 5000)
     public void demoTask() {
-        logger.info("Scheduling Tasks");
+        LOGGER.info("Scheduling Tasks");
     }
 }

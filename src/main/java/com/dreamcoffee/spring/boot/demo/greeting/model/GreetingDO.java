@@ -1,6 +1,6 @@
-package com.dreamcoffee.spring.boot.demo.model;
+package com.dreamcoffee.spring.boot.demo.greeting.model;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.alibaba.fastjson.JSON;
 
 /**
  * GreetingDO
@@ -16,7 +16,7 @@ public class GreetingDO {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return JSON.toJSONString(this);
     }
 
     public String getName() {
