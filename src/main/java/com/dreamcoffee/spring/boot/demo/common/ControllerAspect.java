@@ -44,7 +44,7 @@ public class ControllerAspect {
         List<Object> args = new ArrayList<>(Arrays.asList(point.getArgs()));
         args.removeIf(o -> o instanceof ServletRequest || o instanceof ServletResponse
                 || o.getClass().isAnnotationPresent(Service.class));
-        LOGGER.info("\n\t请求标识: {}\n\t请求IP: {}\n\t请求路径: {}\n\t请求方式: {}\n\t方法描述: {}\n\t请求参数: {}",
+        LOGGER.info("\n\t请求标识: {} \n\t请求IP: {} \n\t请求路径: {} \n\t请求方式: {} \n\t方法描述: {} \n\t请求参数: {}",
                 uuid, request.getRemoteAddr(), request.getRequestURL(), request.getMethod(),
                 StringUtils.join(args), JSON.toJSONString(request.getParameterMap()));
         long startTime = System.currentTimeMillis();

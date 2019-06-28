@@ -1,9 +1,9 @@
 package com.dreamcoffee.spring.boot.demo;
 
+import org.awaitility.Awaitility;
+
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static org.awaitility.Awaitility.await;
 
 /**
  * AwaitilityDemo
@@ -23,7 +23,7 @@ public class AwaitilityDemo {
                 System.out.println(a[0]);
             }
         }, 0, 1000);
-        await().until(() -> a[0] == 5);
+        Awaitility.await().until(() -> a[0] == 5);
         timer.cancel();
     }
 }
