@@ -1,14 +1,14 @@
-package com.dreamcoffee.spring.boot.demo.greeting.param;
+package com.dreamcoffee.spring.boot.demo.customer.vo;
 
 import com.alibaba.fastjson.JSON;
 
 /**
- * GreetingParam
+ * CustomerDTO
  *
  * @author Administrator
  * @date 2019/6/18
  */
-public class GreetingParam {
+public class CustomerDTO {
 
     private String name;
 

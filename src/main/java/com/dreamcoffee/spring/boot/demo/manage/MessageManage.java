@@ -31,20 +31,20 @@ public class MessageManage {
         container.setConnectionFactory(connectionFactory);
         container.addMessageListener(
                 new MessageListenerAdapter(new GreetingAddMessageListener()),
-                new PatternTopic("greeting-add"));
+                new PatternTopic("customer-add"));
         return container;
     }
 
     @Bean
-    StringRedisTemplate template(RedisConnectionFactory connectionFactory) {
+    StringRedisTemplate stringRedisTemplate(RedisConnectionFactory connectionFactory) {
         return new StringRedisTemplate(connectionFactory);
     }
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
-        StringRedisTemplate template = ctx.getBean(StringRedisTemplate.class);
+        StringRedisTemplate stringRedisTemplate = ctx.getBean(StringRedisTemplate.class);
         LOGGER.info("Sending message...");
-        template.convertAndSend("greeting-add", "Hello from Redis!");
+        stringRedisTemplate.convertAndSend("customer-add", "Hello from Redis!");
         System.exit(0);
     }
 }

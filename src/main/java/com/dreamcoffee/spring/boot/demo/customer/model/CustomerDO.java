@@ -1,18 +1,23 @@
-package com.dreamcoffee.spring.boot.demo.greeting.model;
+package com.dreamcoffee.spring.boot.demo.customer.model;
 
 import com.alibaba.fastjson.JSON;
 
 /**
- * GreetingDO
+ * CustomerDO
  *
  * @author Administrator
  * @date 2019/6/18
  */
-public class GreetingDO {
+public class CustomerDO {
 
     private String name;
 
     private Integer number;
+
+    public CustomerDO(String name, Integer number) {
+        this.name = name;
+        this.number = number;
+    }
 
     @Override
     public String toString() {
