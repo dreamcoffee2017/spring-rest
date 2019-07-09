@@ -39,7 +39,7 @@ public class HttpManage {
         LOGGER.info("Consuming a RESTful Web Service");
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        HttpEntity<String> httpEntity = new HttpEntity<>("{\"name\":\"123\"}", headers);
+        HttpEntity<String> httpEntity = new HttpEntity<>("{\"name\":\"John\"}", headers);
         String result = restTemplate.postForObject("http://localhost:8080/customer/listCustomer", httpEntity, String.class);
         LOGGER.info(result);
         System.exit(0);

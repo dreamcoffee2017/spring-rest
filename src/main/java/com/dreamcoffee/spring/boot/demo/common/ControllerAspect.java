@@ -9,7 +9,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -42,8 +41,7 @@ public class ControllerAspect {
         String uuid = UUID.randomUUID().toString().replace("-", "");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         List<Object> args = new ArrayList<>(Arrays.asList(point.getArgs()));
-        args.removeIf(o -> o instanceof ServletRequest || o instanceof ServletResponse
-                || o.getClass().isAnnotationPresent(Service.class));
+        args.removeIf(o -> o instanceof ServletRequest || o instanceof ServletResponse);
         LOGGER.info("\n\t请求标识: {} \n\t请求IP: {} \n\t请求路径: {} \n\t请求方式: {} \n\t方法描述: {} \n\t请求参数: {}",
                 uuid, request.getRemoteAddr(), request.getRequestURL(), request.getMethod(),
                 StringUtils.join(args), JSON.toJSONString(request.getParameterMap()));

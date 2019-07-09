@@ -1,5 +1,6 @@
 package com.dreamcoffee.spring.boot.demo;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019/5/27
  */
 @SpringBootApplication
+@MapperScan("com.dreamcoffee.spring.boot.demo.*.mapper")
 //@EnableScheduling
 public class Application {
 

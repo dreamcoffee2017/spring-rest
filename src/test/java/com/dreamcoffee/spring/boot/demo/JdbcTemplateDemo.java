@@ -23,12 +23,12 @@ public class JdbcTemplateDemo {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(Application.class, args);
         JdbcTemplate jdbcTemplate = ctx.getBean(JdbcTemplate.class);
-        jdbcTemplate.execute("CREATE TABLE customers(id SERIAL, name VARCHAR(255), number DECIMAL(10,2))");
+        jdbcTemplate.execute("CREATE TABLE customer(id SERIAL, name VARCHAR(255), number DECIMAL(10,2))");
         List<Object[]> argList = Stream.of("John 1", "Jeff 2.1", "Josh 3", "Josh 4")
                 .map(o -> o.split(" "))
                 .collect(Collectors.toList());
         argList.forEach(o -> LOGGER.info(String.format("Inserting customer record for %s %s", o[0], o[1])));
-        jdbcTemplate.batchUpdate("INSERT INTO customers(name, number) VALUES (?,?)", argList);
+        jdbcTemplate.batchUpdate("INSERT INTO customer(name, number) VALUES (?,?)", argList);
         System.exit(0);
     }
 }
