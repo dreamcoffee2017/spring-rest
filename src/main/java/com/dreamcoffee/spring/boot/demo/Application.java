@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @MapperScan("com.dreamcoffee.spring.boot.demo.*.mapper")
 //@EnableScheduling
+//@EnableAsync
 public class Application {
 
     public static void main(String[] args) {
