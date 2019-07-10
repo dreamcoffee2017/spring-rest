@@ -24,4 +24,11 @@ public interface ICustomerService extends IService<Customer> {
      * @return
      */
     List<CustomerDTO> listCustomer(CustomerParam param);
+
+    /**
+     * saveCustomer
+     *
+     * @param param
+     */
+    void saveCustomer(CustomerParam param);
 }

@@ -9,6 +9,7 @@ import com.dreamcoffee.spring.boot.demo.customer.vo.CustomerDTO;
 import com.dreamcoffee.spring.boot.demo.customer.vo.CustomerParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,5 +36,15 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
                     result.add(customerDTO);
                 });
         return result;
+    }
+
+    @Override
+    @Transactional
+    public void saveCustomer(CustomerParam param) {
+        param.getNameList().forEach(name -> {
+            Customer customer = new Customer();
+            customer.setName(name);
+            this.baseMapper.insert(customer);
+        });
     }
 }

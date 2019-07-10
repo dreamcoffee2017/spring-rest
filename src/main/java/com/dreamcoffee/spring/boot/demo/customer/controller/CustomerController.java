@@ -35,5 +35,13 @@ public class CustomerController {
         result.setData(customerService.listCustomer(param));
         return result;
     }
+
+    @RequestMapping("/saveCustomer")
+    public ResultDTO saveCustomer(@RequestBody CustomerParam param) {
+        ResultDTO<List<CustomerDTO>> result = new ResultDTO<>();
+        result.setCode(ResultEnum.SUCCESS.getCode());
+        customerService.saveCustomer(param);
+        return result;
+    }
 }
 
