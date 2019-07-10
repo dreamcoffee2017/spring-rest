@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -37,9 +38,11 @@ public class ControllerAspect {
     }
 
     @Around("controllerAspect()")
-    public Object around(ProceedingJoinPoint point) throws Throwable {
+    public Object around(ProceedingJoinPoint point) {
         String uuid = UUID.randomUUID().toString().replace("-", "");
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        Assert.notNull(requestAttributes, "request must not be null");
+        HttpServletRequest request = requestAttributes.getRequest();
         List<Object> args = new ArrayList<>(Arrays.asList(point.getArgs()));
         args.removeIf(o -> o instanceof ServletRequest || o instanceof ServletResponse);
         LOGGER.info("\n\t请求标识: {} \n\t请求IP: {} \n\t请求路径: {} \n\t请求方式: {} \n\t方法描述: {} \n\t请求参数: {}",
@@ -49,7 +52,7 @@ public class ControllerAspect {
         Object result;
         try {
             result = point.proceed(point.getArgs());
-        } catch (Exception e) {
+        } catch (Throwable e) {
             result = new ResultDTO(ResultEnum.FAIL.getCode());
             LOGGER.error("", e);
         }
