@@ -53,17 +53,17 @@ public class ControllerAspect {
         HttpServletRequest request = requestAttributes.getRequest();
         List<Object> args = new ArrayList<>(Arrays.asList(point.getArgs()));
         args.removeIf(o -> o instanceof ServletRequest || o instanceof ServletResponse);
-        String logStr = "\n请求IP: {} \n请求路径: {} \n请求方式: {} \n执行时间: {} ms";
+        String logStr = "\n请求IP: {}\n请求路径: {}\n请求方式: {}\n执行时间: {} ms";
         List<Object> logArgList = new ArrayList<>(Arrays.asList(request.getRemoteAddr(), request.getRequestURL(), request.getMethod(), endTime - startTime));
         if (!CollectionUtils.isEmpty(args)) {
-            logStr += " \n方法描述: {}";
+            logStr += "\n方法描述: {}";
             logArgList.add(jsonFormat(args));
         }
         if (!CollectionUtils.isEmpty(request.getParameterMap())) {
-            logStr += " \n请求参数: {}";
-            logArgList.add(jsonFormat(request.getParameterMap()));
+            logStr += "\n请求参数: {}";
+            logArgList.add(request.getParameterMap());
         }
-        logStr += " \n返回值: {}";
+        logStr += "\n返回值: {}";
         logArgList.add(result);
         LOGGER.info(logStr, logArgList.toArray());
         return result;
