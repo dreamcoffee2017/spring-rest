@@ -56,15 +56,15 @@ public class ControllerAspect {
         String logStr = "\n请求IP: {} \n请求路径: {} \n请求方式: {} \n执行时间: {} ms";
         List<Object> logArgList = new ArrayList<>(Arrays.asList(request.getRemoteAddr(), request.getRequestURL(), request.getMethod(), endTime - startTime));
         if (!CollectionUtils.isEmpty(args)) {
-            logStr += " \n方法描述: \n{}";
+            logStr += " \n方法描述: {}";
             logArgList.add(jsonFormat(args));
         }
         if (!CollectionUtils.isEmpty(request.getParameterMap())) {
-            logStr += " \n请求参数: \n{}";
+            logStr += " \n请求参数: {}";
             logArgList.add(jsonFormat(request.getParameterMap()));
         }
-        logStr += " \n返回值: \n{}";
-        logArgList.add(jsonFormat(result));
+        logStr += " \n返回值: {}";
+        logArgList.add(result);
         LOGGER.info(logStr, logArgList.toArray());
         return result;
     }
