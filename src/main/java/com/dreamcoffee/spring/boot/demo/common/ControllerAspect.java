@@ -61,10 +61,10 @@ public class ControllerAspect {
         }
         if (!CollectionUtils.isEmpty(request.getParameterMap())) {
             logStr += "\n请求参数: {}";
-            logArgList.add(request.getParameterMap());
+            logArgList.add(JSON.toJSONString(request.getParameterMap()));
         }
         logStr += "\n返回值: {}";
-        logArgList.add(result);
+        logArgList.add(JSON.toJSONString(result));
         LOGGER.info(logStr, logArgList.toArray());
         return result;
     }
