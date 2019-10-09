@@ -16,10 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-
 /**
  * HttpManage
  *
@@ -56,25 +52,23 @@ public class HttpManage {
         System.exit(0);
     }
 
-    /**
-     * 忽略ssl
-     *
-     * @return
-     * @throws NoSuchAlgorithmException
-     * @throws KeyManagementException
-     * @throws KeyStoreException
-     */
-/*    private HttpComponentsClientHttpRequestFactory generateHttpRequestFactory()
-            throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException {
-        TrustStrategy acceptingTrustStrategy = (x509Certificates, authType) -> true;
-        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(null, acceptingTrustStrategy).build();
-        SSLConnectionSocketFactory connectionSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
-
-        HttpClientBuilder httpClientBuilder = HttpClients.custom();
-        httpClientBuilder.setSSLSocketFactory(connectionSocketFactory);
-        CloseableHttpClient httpClient = httpClientBuilder.build();
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setHttpClient(httpClient);
-        return factory;
-    }*/
+//    /**
+//     * 忽略ssl
+//     *
+//     * @return
+//     * @throws Exception
+//     */
+//    private HttpComponentsClientHttpRequestFactory generateHttpRequestFactory() throws Exception {
+//        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build();
+//        SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
+//        CloseableHttpClient httpClient = HttpClients.custom()
+//                .setSSLSocketFactory(socketFactory)
+//                .setConnectionTimeToLive(5, TimeUnit.MINUTES)
+//                .build();
+//        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+//        requestFactory.setHttpClient(httpClient);
+//        requestFactory.setConnectTimeout(5000);
+//        requestFactory.setReadTimeout(5000);
+//        return requestFactory;
+//    }
 }
