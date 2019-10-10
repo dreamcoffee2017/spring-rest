@@ -10,11 +10,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Map;
 
 /**
  * HttpManage
@@ -35,11 +36,31 @@ public class HttpManage {
         return builder.build();
     }
 
+    /**
+     * MultiValueMap -> application/x-www-form-urlencoded;charset=UTF-8
+     * or multipart/form-data;charset=UTF-8
+     *
+     * @param url
+     * @param args
+     * @return
+     */
     public String post(String url, JSONObject args) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        HttpEntity<String> httpEntity = new HttpEntity<>(args.toString(), headers);
-        return restTemplate.postForObject(url, httpEntity, String.class);
+        MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
+        for (Map.Entry<String, Object> entry : args.entrySet()) {
+            param.set(entry.getKey(), entry.getValue());
+        }
+        return restTemplate.postForObject(url, param, String.class);
+    }
+
+    /**
+     * Object -> application/json;charset=UTF-8
+     *
+     * @param url
+     * @param args
+     * @return
+     */
+    public String postJson(String url, JSONObject args) {
+        return restTemplate.postForObject(url, args, String.class);
     }
 
     public static void main(String[] args) {
@@ -47,7 +68,7 @@ public class HttpManage {
         HttpManage httpManage = ctx.getBean(HttpManage.class);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", "John");
-        String result = httpManage.post(Constant.TEST_HTTP_URL, jsonObject);
+        String result = httpManage.postJson(Constant.TEST_HTTP_URL, jsonObject);
         LOGGER.info(result);
         System.exit(0);
     }

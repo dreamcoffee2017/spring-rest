@@ -36,7 +36,7 @@ public class AsyncDemo {
         LOGGER.info("Looking up " + user);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", "John");
-        String result = httpManage.post(Constant.TEST_HTTP_URL, jsonObject);
+        String result = httpManage.postJson(Constant.TEST_HTTP_URL, jsonObject);
         // Artificial delay of 1s for demonstration purposes
         Thread.sleep(1000L);
         return CompletableFuture.completedFuture(result);
