@@ -80,7 +80,7 @@ public class HttpManage {
 //     * @throws Exception
 //     */
 //    private HttpComponentsClientHttpRequestFactory generateHttpRequestFactory() throws Exception {
-//        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build();
+//        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(null, (x509Certificates, authType) -> true).build();
 //        SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
 //        CloseableHttpClient httpClient = HttpClients.custom()
 //                .setSSLSocketFactory(socketFactory)
