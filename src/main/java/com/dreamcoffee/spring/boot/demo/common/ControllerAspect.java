@@ -1,7 +1,5 @@
 package com.dreamcoffee.spring.boot.demo.common;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,16 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * ControllerAspect
@@ -41,41 +34,19 @@ public class ControllerAspect {
     public Object around(ProceedingJoinPoint point) {
         Object result;
         long startTime = System.currentTimeMillis();
+        Object[] args = point.getArgs();
         try {
-            result = point.proceed(point.getArgs());
+            result = point.proceed(args);
         } catch (Throwable e) {
             result = new ResultDTO(ResultEnum.FAIL.getCode());
-            LOGGER.error("", e);
+            LOGGER.error(Arrays.toString(args), e);
         }
         long endTime = System.currentTimeMillis();
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         Assert.notNull(requestAttributes, "request must not be null");
         HttpServletRequest request = requestAttributes.getRequest();
-        List<Object> args = new ArrayList<>(Arrays.asList(point.getArgs()));
-        args.removeIf(o -> o instanceof ServletRequest || o instanceof ServletResponse);
-        String logStr = "\n请求IP: {}\n请求路径: {}\n请求方式: {}\n执行时间: {} ms";
-        List<Object> logArgList = new ArrayList<>(Arrays.asList(request.getRemoteAddr(), request.getRequestURL(), request.getMethod(), endTime - startTime));
-        if (!CollectionUtils.isEmpty(args)) {
-            logStr += "\n方法描述: {}";
-            logArgList.add(jsonFormat(args));
-        }
-        if (!CollectionUtils.isEmpty(request.getParameterMap())) {
-            logStr += "\n请求参数: {}";
-            logArgList.add(JSON.toJSONString(request.getParameterMap()));
-        }
-        logStr += "\n返回值: {}";
-        logArgList.add(JSON.toJSONString(result));
-        LOGGER.info(logStr, logArgList.toArray());
+        String logStr = "\n\turl = {}, ip = {}, time = {}ms\n\tparams = {}\n\tresult = {}";
+        LOGGER.info(logStr, request.getRequestURL(), request.getRemoteAddr(), endTime - startTime, args, result);
         return result;
-    }
-
-    /**
-     * json格式化
-     *
-     * @param object
-     * @return
-     */
-    private String jsonFormat(Object object) {
-        return JSON.toJSONString(object, SerializerFeature.PrettyFormat);
     }
 }
