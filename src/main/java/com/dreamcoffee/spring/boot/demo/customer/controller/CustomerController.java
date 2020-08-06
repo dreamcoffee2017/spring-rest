@@ -30,7 +30,7 @@ public class CustomerController {
     private ICustomerService customerService;
 
     @RequestMapping("/listCustomer")
-    public ResultDTO listCustomer(@RequestBody CustomerParam param) {
+    public ResultDTO<List<CustomerDTO>> listCustomer(@RequestBody CustomerParam param) {
         ResultDTO<List<CustomerDTO>> result = new ResultDTO<>();
         result.setCode(ResultEnum.SUCCESS.getCode());
         result.setData(customerService.listCustomer(param));
@@ -38,7 +38,7 @@ public class CustomerController {
     }
 
     @RequestMapping("/saveCustomer")
-    public ResultDTO saveCustomer(@RequestBody CustomerParam param) {
+    public ResultDTO<List<CustomerDTO>> saveCustomer(@RequestBody CustomerParam param) {
         ResultDTO<List<CustomerDTO>> result = new ResultDTO<>();
         result.setCode(ResultEnum.SUCCESS.getCode());
         customerService.saveCustomer(param);

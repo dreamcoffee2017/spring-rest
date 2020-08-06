@@ -38,7 +38,7 @@ public class ControllerAspect {
         try {
             result = point.proceed(args);
         } catch (Throwable e) {
-            result = new ResultDTO(ResultEnum.FAIL.getCode());
+            result = new ResultDTO<>(ResultEnum.FAIL.getCode());
             LOGGER.error(Arrays.toString(args), e);
         }
         long endTime = System.currentTimeMillis();

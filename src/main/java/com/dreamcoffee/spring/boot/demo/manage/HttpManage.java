@@ -5,7 +5,6 @@ import com.dreamcoffee.spring.boot.demo.Application;
 import com.dreamcoffee.spring.boot.demo.common.Constant;
 import com.dreamcoffee.spring.boot.demo.common.ResultDTO;
 import com.dreamcoffee.spring.boot.demo.customer.entity.Customer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +88,8 @@ public class HttpManage {
         jsonObject.put("name", "John");
         String result = httpManage.postJson(Constant.TEST_HTTP_URL, jsonObject);
         LOGGER.info(result);
-        ResultDTO<List<Customer>> res = httpManage.postJson(Constant.TEST_HTTP_URL, jsonObject, new ParameterizedTypeReference<ResultDTO<List<Customer>>>() {});
+        ResultDTO<List<Customer>> res = httpManage.postJson(Constant.TEST_HTTP_URL, jsonObject, new ParameterizedTypeReference<>() {
+        });
         System.out.println(res);
         System.exit(0);
     }
