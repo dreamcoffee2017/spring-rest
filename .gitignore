@@ -1,4 +1,10 @@
+#idea
 .idea
 *.iml
 target
+#vs
+.settings
+.classpath
+.project
+#h2
 *.db
