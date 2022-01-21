@@ -1,6 +1,3 @@
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 /**
  * A
  *
@@ -10,10 +7,6 @@ import com.google.gson.JsonObject;
 public class A {
 
     public static void main(String[] args) {
-        Gson gson = new Gson();
-        JsonObject jsonObject = gson.fromJson("{\"student\":{\"name\":\"frank\"}}", JsonObject.class);
-        System.out.println(jsonObject.get("student").getAsJsonObject().get("name"));
-        
         /*FutureTask<Object> futureTask = new FutureTask<>(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
@@ -50,19 +43,6 @@ public class A {
         }*/
 
     }
-
-/*    private static int getInt() {
-        int a = 10;
-        try {
-            System.out.println(a / 0);
-        } catch (ArithmeticException e) {
-            a = 30;
-            return a;
-        } finally {
-            a = 40;
-        }
-      return a;
-    }*/
 }
 
 /*interface B {

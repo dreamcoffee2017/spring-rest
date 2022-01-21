@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import lombok.Data;
 
 /**
  * <p>
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
  * @author Administrator
  * @since 2019-07-06
  */
+@Data
 @TableName("CUSTOMER")
 public class Customer implements Serializable {
 
@@ -29,38 +31,4 @@ public class Customer implements Serializable {
 
     @TableField("NUMBER")
     private BigDecimal number;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getNumber() {
-        return number;
-    }
-
-    public void setNumber(BigDecimal number) {
-        this.number = number;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name=" + name +
-                ", number=" + number +
-                "}";
-    }
 }

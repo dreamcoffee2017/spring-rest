@@ -14,7 +14,7 @@ public enum ResultEnum {
     SUCCESS(1),
     FAIL(0);
 
-    private int code;
+    private final int code;
 
     ResultEnum(int code) {
         this.code = code;

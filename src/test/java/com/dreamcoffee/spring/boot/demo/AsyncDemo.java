@@ -1,8 +1,12 @@
 package com.dreamcoffee.spring.boot.demo;
 
-import com.alibaba.fastjson.JSONObject;
 import com.dreamcoffee.spring.boot.demo.common.Constant;
 import com.dreamcoffee.spring.boot.demo.manage.HttpManage;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +16,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
-
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 
 /**
  * GitHubLookupService
@@ -34,7 +34,7 @@ public class AsyncDemo {
     @Async
     public CompletableFuture<String> findUser(String user) throws InterruptedException {
         LOGGER.info("Looking up " + user);
-        JSONObject jsonObject = new JSONObject();
+        Map<String, Object> jsonObject = new HashMap<>();
         jsonObject.put("name", "John");
         String result = httpManage.postJson(Constant.TEST_HTTP_URL, jsonObject);
         // Artificial delay of 1s for demonstration purposes
