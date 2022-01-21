@@ -1,5 +1,7 @@
-package com.dreamcoffee.spring.boot.demo.common;
+package com.dreamcoffee.spring.boot.demo.config;
 
+import com.dreamcoffee.spring.boot.demo.common.ResultDTO;
+import com.dreamcoffee.spring.boot.demo.common.ResultEnum;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

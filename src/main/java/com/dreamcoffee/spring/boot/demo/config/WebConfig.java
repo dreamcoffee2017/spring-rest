@@ -1,4 +1,4 @@
-package com.dreamcoffee.spring.boot.demo.common;
+package com.dreamcoffee.spring.boot.demo.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author Administrator
  * @date 2019/10/16
  */
-@Configuration
+//@Configuration
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
