@@ -1,7 +1,3 @@
-spring:
-  datasource:
-    url: jdbc:h2:file:./h2
-
 graphiql:
   mapping: /graphiql
   endpoint:
@@ -19,8 +15,6 @@ graphiql:
   props:
     resources:
       query: schema.graphqls
-#      defaultQuery: defaultQuery.graphql
-#      variables: variables.graphql
     variables:
       editorTheme: "solarized light"
   headers:
