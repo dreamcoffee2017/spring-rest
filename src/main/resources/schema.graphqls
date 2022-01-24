@@ -1,17 +1,17 @@
 type Query {
-    getUser(id: ID!): User
+    listCustomer(name: String!): [CustomerDto]
 }
 
 type Mutation {
-    createUser(input: UserInput!): User
+    createCustomer(input: CustomerInput!): String
 }
 
-input UserInput {
+input CustomerInput {
     name: String!
     email: String
 }
 
-type User {
+type CustomerDto {
     id: String
     name: String
     email: String

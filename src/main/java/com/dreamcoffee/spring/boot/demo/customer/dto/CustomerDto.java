@@ -1,17 +1,15 @@
-package com.dreamcoffee.spring.boot.demo.customer.entity;
+package com.dreamcoffee.spring.boot.demo.customer.dto;
 
 import lombok.Data;
 
 /**
- * <p>
- *
- * </p>
+ * CustomerDTO
  *
  * @author Administrator
- * @since 2019-07-06
+ * @date 2019/6/18
  */
 @Data
-public class Customer {
+public class CustomerDto {
 
     private String id;
     private String name;

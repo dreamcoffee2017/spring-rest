@@ -1,10 +1,7 @@
 package com.dreamcoffee.spring.boot.demo.customer.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.dreamcoffee.spring.boot.demo.customer.entity.Customer;
-import com.dreamcoffee.spring.boot.demo.customer.vo.CustomerDTO;
-import com.dreamcoffee.spring.boot.demo.customer.vo.CustomerParam;
-
+import com.dreamcoffee.spring.boot.demo.customer.dto.CustomerDto;
+import com.dreamcoffee.spring.boot.demo.customer.input.CustomerInput;
 import java.util.List;
 
 /**
@@ -15,20 +12,20 @@ import java.util.List;
  * @author Administrator
  * @since 2019-07-06
  */
-public interface ICustomerService extends IService<Customer> {
+public interface ICustomerService {
 
     /**
      * listCustomer
      *
-     * @param param
+     * @param name
      * @return
      */
-    List<CustomerDTO> listCustomer(CustomerParam param);
+    List<CustomerDto> listCustomer(String name);
 
     /**
      * saveCustomer
      *
-     * @param param
+     * @param input
      */
-    void saveCustomer(CustomerParam param);
+    void saveCustomer(CustomerInput input);
 }

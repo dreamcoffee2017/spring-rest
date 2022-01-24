@@ -2,7 +2,6 @@ package com.dreamcoffee.spring.boot.demo.manage;
 
 import com.dreamcoffee.spring.boot.demo.Application;
 import com.dreamcoffee.spring.boot.demo.common.Constant;
-import com.dreamcoffee.spring.boot.demo.common.ResultDTO;
 import com.dreamcoffee.spring.boot.demo.customer.entity.Customer;
 import java.util.HashMap;
 import java.util.List;
@@ -82,8 +81,9 @@ public class HttpManage {
         jsonObject.put("name", "John");
         String result = httpManage.postJson(Constant.TEST_HTTP_URL, jsonObject);
         LOGGER.info(result);
-        ResultDTO<List<Customer>> res = httpManage.postJson(Constant.TEST_HTTP_URL, jsonObject, new ParameterizedTypeReference<ResultDTO<List<Customer>>>() {
-        });
+        List<Customer> res = httpManage.postJson(Constant.TEST_HTTP_URL, jsonObject,
+            new ParameterizedTypeReference<List<Customer>>() {
+            });
         System.out.println(res);
         System.exit(0);
     }
