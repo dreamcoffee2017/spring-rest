@@ -2,6 +2,12 @@
 pipeline {
     agent any
 
+    options {
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+        skipDefaultCheckout()
+    }
+
     stages {
         stage('Build') {
             steps {
