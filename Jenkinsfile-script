@@ -1,45 +1,35 @@
 #!/usr/bin/env groovy
 def ENVIRONMENT = 'ppe'
-
-properties([
-        buildDiscarder(logRotator(numToKeepStr: '3')),
-        disableResume(),
-        parameters([
-                extendedChoice(
-                        name: 'TARGET_REGION',
-                        type: 'PT_SINGLE_SELECT',
-                        propertyFile: "${WORKSPACE}/src/main/resources/application.properties",
-                        propertyKey: 'param.backupRegion',
-                        description: 'Target BAW/ODM region'
-                ),
-                extendedChoice(
-                        name: 'SUBENVIRONMENT',
-                        type: 'PT_SINGLE_SELECT',
-                        propertyFile: "${WORKSPACE}/src/main/resources/application.properties",
-                        propertyKey: 'param.subEnv',
-                        description: "Target BAW/ODM subenvironment to be deployed to e.g. 01 for ${ENVIRONMENT}01, 02 for ${ENVIRONMENT}02. Choose main for ${ENVIRONMENT}"
-                ),
-                gitParameter(
-                        name: 'TAG',
-                        type: 'PT_TAG',
-                        selectedValue: 'NONE',
-                        defaultValue: 'master'
-                )
-        ])
-])
-
 def GIT_URL = 'https://github.com/dreamcoffee2017/spring-boot-demo.git'
 def PROPS
-def ENV = "${ENVIRONMENT}${SUBENVIRONMENT == 'main' ? '' : SUBENVIRONMENT}"
-println(ENV)
 def REGION_SHORT
 
 node {
+    properties([
+        buildDiscarder(logRotator(numToKeepStr: '3')),
+        disableResume(),
+        parameters([
+            extendedChoice(
+                    name: 'TARGET_REGION',
+                    type: 'PT_SINGLE_SELECT',
+                    propertyFile: "${WORKSPACE}/src/main/resources/application.properties",
+                    propertyKey: 'params.backupRegion',
+                    description: 'Target BAW/ODM region'
+            ),
+            gitParameter(
+                    name: 'TAG',
+                    type: 'PT_TAG',
+                    selectedValue: 'NONE',
+                    defaultValue: 'master'
+            )
+        ])
+    ])
+
     timestamps {
         stage ('Checkout') {
             checkout([
                     $class: 'GitSCM',
-                    branches: [[name: TAG]],
+                    branches: [[name: params.TAG]],
                     extensions: [[$class: 'CleanCheckout']],
                     userRemoteConfigs: [[url: GIT_URL]]
             ])
