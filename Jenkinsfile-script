@@ -13,7 +13,7 @@ node {
                     name: 'TARGET_REGION',
                     type: 'PT_SINGLE_SELECT',
                     propertyFile: "${WORKSPACE}/src/main/resources/application.properties",
-                    propertyKey: 'params.backupRegion',
+                    propertyKey: 'params.region',
                     description: 'Target BAW/ODM region'
             ),
             gitParameter(
