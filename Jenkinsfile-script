@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 def ENVIRONMENT = 'ppe'
-def GIT_URL = 'https://git.sami.int.thomsonreuters.com/rdp-workflow-baw-v2/irpm-integration.git'
+def GIT_URL = 'https://github.com/dreamcoffee2017/spring-boot-demo.git'
 def ENV = "${ENVIRONMENT}${SUBENVIRONMENT == 'main' ? '' : SUBENVIRONMENT}"
 def PROPS
 def REGION_SHORT
