@@ -1,8 +1,8 @@
 #!/usr/bin/env groovy
 def ENVIRONMENT = 'ppe'
 def GIT_URL = 'https://github.com/dreamcoffee2017/spring-boot-demo.git'
-def ENV = "${ENVIRONMENT}${SUBENVIRONMENT == 'main' ? '' : SUBENVIRONMENT}"
 def PROPS
+def ENV
 def REGION_SHORT
 
 node {
@@ -44,6 +44,7 @@ node {
             PROPS = readProperties file: 'src/main/resources/application.properties'
             def propsEnv = readProperties file: "src/main/resources/application-${ENVIRONMENT}.properties"
             PROPS.putAll(propsEnv)
+            ENV = "${ENVIRONMENT}${SUBENVIRONMENT == 'main' ? '' : SUBENVIRONMENT}"
             REGION_SHORT = PROPS["aws.region.${TARGET_REGION}.shortname"]
             println(ENV)
             println(REGION_SHORT)
