@@ -27,6 +27,7 @@ node {
                     gitParameter(
                             name: 'TAG',
                             type: 'PT_TAG',
+                            selectedValue: 'NONE',
                             defaultValue: 'master'
                     )
             ])
@@ -36,7 +37,7 @@ node {
         stage ('Checkout') {
             checkout([
                     $class: 'GitSCM',
-                    branches: [[name: "${params.TAG}"]],
+                    branches: [[name: params.TAG]],
                     extensions: [[$class: 'CleanCheckout']],
                     userRemoteConfigs: [[url: GIT_URL]]
             ])
@@ -44,7 +45,7 @@ node {
             PROPS = readProperties file: 'src/main/resources/application.properties'
             def propsEnv = readProperties file: "src/main/resources/application-${ENVIRONMENT}.properties"
             PROPS.putAll(propsEnv)
-            ENV = "${ENVIRONMENT}${SUBENVIRONMENT == 'main' ? '' : SUBENVIRONMENT}"
+            ENV = "${ENVIRONMENT}${params.SUBENVIRONMENT == 'main' ? '' : params.SUBENVIRONMENT}"
             REGION_SHORT = PROPS["aws.region.${TARGET_REGION}.shortname"]
             println(ENV)
             println(REGION_SHORT)
