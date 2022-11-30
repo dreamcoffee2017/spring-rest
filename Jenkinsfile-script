@@ -10,17 +10,17 @@ node {
         disableResume(),
         parameters([
             extendedChoice(
-                    name: 'TARGET_REGION',
-                    type: 'PT_SINGLE_SELECT',
-                    propertyFile: "${WORKSPACE}/src/main/resources/application.properties",
-                    propertyKey: 'params.region',
-                    description: 'Target BAW/ODM region'
+                name: 'TARGET_REGION',
+                type: 'PT_SINGLE_SELECT',
+                propertyFile: "${WORKSPACE}/src/main/resources/application.properties",
+                propertyKey: 'params.region',
+                description: 'Target BAW/ODM region'
             ),
             gitParameter(
-                    name: 'TAG',
-                    type: 'PT_TAG',
-                    selectedValue: 'NONE',
-                    defaultValue: 'master'
+                name: 'TAG',
+                type: 'PT_TAG',
+                selectedValue: 'NONE',
+                defaultValue: 'master'
             )
         ])
     ])
@@ -29,7 +29,7 @@ node {
         stage ('Checkout') {
             checkout([
                     $class: 'GitSCM',
-                    branches: [[name: params.TAG]],
+                    branches: [[name: "${params.TAG ?: 'master'}"]],
                     extensions: [[$class: 'CleanCheckout']],
                     userRemoteConfigs: [[url: GIT_URL]]
             ])
@@ -37,7 +37,7 @@ node {
             PROPS = readProperties file: 'src/main/resources/application.properties'
             def propsEnv = readProperties file: "src/main/resources/application-${ENVIRONMENT}.properties"
             PROPS.putAll(propsEnv)
-            REGION_SHORT = PROPS["aws.region.${TARGET_REGION}.shortname"]
+            REGION_SHORT = PROPS["aws.region.${params.TARGET_REGION}.shortname"]
             println(REGION_SHORT)
         }
     }
