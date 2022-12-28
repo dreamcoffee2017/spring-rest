@@ -1,11 +1,5 @@
 #idea
 .idea
-*.iml
 target
-#vs
-.vscode
-.settings
-.classpath
-.project
 #h2
 *.db
