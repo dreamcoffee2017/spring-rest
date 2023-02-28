@@ -1,4 +1,4 @@
-package com.dreamcoffee.spring.boot.demo.customer.input;
+package com.example.springrest.customer.input;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

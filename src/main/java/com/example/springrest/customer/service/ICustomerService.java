@@ -1,7 +1,8 @@
-package com.dreamcoffee.spring.boot.demo.customer.service;
+package com.example.springrest.customer.service;
 
-import com.dreamcoffee.spring.boot.demo.customer.dto.CustomerDto;
-import com.dreamcoffee.spring.boot.demo.customer.input.CustomerInput;
+import com.example.springrest.customer.dto.CustomerDto;
+import com.example.springrest.customer.input.CustomerInput;
+
 import java.util.List;
 
 /**
@@ -17,15 +18,15 @@ public interface ICustomerService {
     /**
      * listCustomer
      *
-     * @param name
-     * @return
+     * @param name customer's name
+     * @return dto
      */
     List<CustomerDto> listCustomer(String name);
 
     /**
      * saveCustomer
      *
-     * @param input
+     * @param input param
      */
     void saveCustomer(CustomerInput input);
 }

@@ -1,6 +1,6 @@
-package com.dreamcoffee.spring.boot.demo.customer.dao;
+package com.example.springrest.customer.dao;
 
-import com.dreamcoffee.spring.boot.demo.customer.entity.Customer;
+import com.example.springrest.customer.entity.Customer;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;

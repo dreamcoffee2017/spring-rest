@@ -1,21 +1,3 @@
-graphiql:
-  mapping: /graphiql
-  endpoint:
-    graphql: /graphql
-    subscriptions: /subscriptions
-  subscriptions:
-    timeout: 30
-    reconnect: false
-  basePath: /
-  enabled: true
-  pageTitle: GraphiQL
-  cdn:
-    enabled: false
-    version: latest
-  props:
-    resources:
-      query: schema.graphqls
-    variables:
-      editorTheme: "solarized light"
-  headers:
-    Authorization: "Bearer <your-token>"
+logging:
+  level:
+    root: INFO

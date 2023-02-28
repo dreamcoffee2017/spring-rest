@@ -1,13 +1,13 @@
-package com.dreamcoffee.spring.boot.demo.customer.service.impl;
+package com.example.springrest.customer.service.impl;
 
-import com.dreamcoffee.spring.boot.demo.customer.cache.CustomerCache;
-import com.dreamcoffee.spring.boot.demo.customer.dto.CustomerDto;
-import com.dreamcoffee.spring.boot.demo.customer.input.CustomerInput;
-import com.dreamcoffee.spring.boot.demo.customer.service.ICustomerService;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.springrest.customer.cache.CustomerCache;
+import com.example.springrest.customer.dto.CustomerDto;
+import com.example.springrest.customer.input.CustomerInput;
+import com.example.springrest.customer.service.ICustomerService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>
@@ -19,9 +19,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class CustomerServiceImpl implements ICustomerService {
+    private final CustomerCache customerCache;
 
-    @Autowired
-    private CustomerCache customerCache;
+    public CustomerServiceImpl(CustomerCache customerCache) {
+        this.customerCache = customerCache;
+    }
 
     @Override
     public List<CustomerDto> listCustomer(String name) {

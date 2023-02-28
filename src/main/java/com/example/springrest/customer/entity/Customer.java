@@ -1,4 +1,4 @@
-package com.dreamcoffee.spring.boot.demo.customer.entity;
+package com.example.springrest.customer.entity;
 
 import lombok.Data;
 

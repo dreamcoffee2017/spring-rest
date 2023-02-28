@@ -1,4 +1,4 @@
-package com.dreamcoffee.spring.boot.demo;
+package com.example.springrest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.EnableCaching;
  * Application
  *
  * @author Administrator
- * @date 2019/5/27
+ * @since 2019/5/27
  */
 @SpringBootApplication
 @EnableCaching

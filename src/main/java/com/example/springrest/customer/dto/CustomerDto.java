@@ -1,4 +1,4 @@
-package com.dreamcoffee.spring.boot.demo.customer.dto;
+package com.example.springrest.customer.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
  * CustomerDTO
  *
  * @author Administrator
- * @date 2019/6/18
+ * @since 2019/6/18
  */
 @Data
 public class CustomerDto {

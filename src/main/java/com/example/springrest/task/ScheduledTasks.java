@@ -1,4 +1,4 @@
-package com.dreamcoffee.spring.boot.demo.task;
+package com.example.springrest.task;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * ScheduledTasks
  *
  * @author Administrator
- * @date 2019/5/27
+ * @since 2019/5/27
  */
 @Component
 public class ScheduledTasks {

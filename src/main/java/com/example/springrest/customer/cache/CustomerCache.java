@@ -1,32 +1,34 @@
-package com.dreamcoffee.spring.boot.demo.customer.cache;
+package com.example.springrest.customer.cache;
 
-import com.dreamcoffee.spring.boot.demo.customer.dao.ICustomerDao;
-import com.dreamcoffee.spring.boot.demo.customer.dto.CustomerDto;
-import com.dreamcoffee.spring.boot.demo.customer.entity.Customer;
-import com.dreamcoffee.spring.boot.demo.customer.input.CustomerInput;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import com.example.springrest.customer.dao.ICustomerDao;
+import com.example.springrest.customer.dto.CustomerDto;
+import com.example.springrest.customer.entity.Customer;
+import com.example.springrest.customer.input.CustomerInput;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 /**
  * CustomerCache 默认proxy模式，不支持类内部调用 根据查询条件缓存，缓存hot页
  *
  * @author Administrator
- * @date 2019/7/11
+ * @since 2019/7/11
  */
 @Component
 @CacheConfig(cacheNames = "customer")
 public class CustomerCache {
+    private final ICustomerDao customerDao;
 
-    @Autowired
-    private ICustomerDao customerDao;
+    public CustomerCache(ICustomerDao customerDao) {
+        this.customerDao = customerDao;
+    }
 
     @Cacheable(key = "#name", sync = true)
     public List<CustomerDto> listCustomer(String name) {
